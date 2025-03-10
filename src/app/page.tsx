@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8 pb-20 sm:p-20">
       <main className="flex flex-col gap-8 items-center max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold">Image Trimmer</h1>
+        <h1 className="text-3xl font-bold">Image Trimmer by W.Segura ©2025 March</h1>
         
         <div className="w-full space-y-4">
           <div className="flex flex-wrap gap-4 justify-center">

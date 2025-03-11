@@ -61,33 +61,34 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen p-8 pb-20 sm:p-20">
-      <main className="flex flex-col gap-8 items-center max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold">Image Trimmer by W.Segura ©2025 March</h1>
+    <div className="max-w-screen min-h-screen p-4 md:p-6 lg:p-8">
+      <main className="flex flex-col gap-4 items-center max-w-6xl mx-auto">
+        <h1 className="text-2xl md:text-3xl font-bold text-center px-4">Image Trimmer </h1>
+        <h2>by W.Segura © 2025 March v1.1</h2>
         
-        <div className="w-full space-y-4">
-          <div className="flex flex-wrap gap-4 justify-center">
+        <div className="w-full max-w-[1200px] mx-auto px-2 md:px-4">
+          <div className="flex flex-wrap gap-2 md:gap-4 justify-center mb-4">
             <button
               onClick={() => setAspectRatio(undefined)}
-              className={`px-4 py-2 rounded-full ${!aspectRatio ? 'bg-foreground text-background' : 'border border-foreground'}`}
+              className={`px-3 md:px-4 py-2 rounded-md ${!aspectRatio ? 'bg-foreground text-background' : 'border border-foreground'}`}
             >
               Free
             </button>
             <button
               onClick={() => setAspectRatio(1)}
-              className={`px-4 py-2 rounded-full ${aspectRatio === 1 ? 'bg-foreground text-background' : 'border border-foreground'}`}
+              className={`px-3 md:px-4 py-2 rounded-md ${aspectRatio === 1 ? 'bg-foreground text-background' : 'border border-foreground'}`}
             >
               1:1
             </button>
             <button
               onClick={() => setAspectRatio(16/9)}
-              className={`px-4 py-2 rounded-full ${aspectRatio === 16/9 ? 'bg-foreground text-background' : 'border border-foreground'}`}
+              className={`px-3 md:px-4 py-2 rounded-md ${aspectRatio === 16/9 ? 'bg-foreground text-background' : 'border border-foreground'}`}
             >
               16:9
             </button>
             <button
               onClick={() => setAspectRatio(4/3)}
-              className={`px-4 py-2 rounded-full ${aspectRatio === 4/3 ? 'bg-foreground text-background' : 'border border-foreground'}`}
+              className={`px-3 md:px-4 py-2 rounded-md ${aspectRatio === 4/3 ? 'bg-foreground text-background' : 'border border-foreground'}`}
             >
               4:3
             </button>
@@ -95,18 +96,18 @@ export default function Home() {
               <input
                 type="number"
                 min="1"
-                placeholder="Width"
+                placeholder="横幅"
                 value={customWidth}
-                className="w-20 px-3 py-2 rounded-full border border-foreground text-sm"
+                className="w-16 md:w-20 px-2 md:px-3 py-2 rounded-md border border-foreground text-sm"
                 onChange={(e) => handleCustomRatioChange('width', e.target.value)}
               />
               <span>:</span>
               <input
                 type="number"
                 min="1"
-                placeholder="Height"
+                placeholder="高さ"
                 value={customHeight}
-                className="w-20 px-3 py-2 rounded-full border border-foreground text-sm"
+                className="w-16 md:w-20 px-2 md:px-3 py-2 rounded-md border border-foreground text-sm"
                 onChange={(e) => handleCustomRatioChange('height', e.target.value)}
               />
             </div>
@@ -118,7 +119,7 @@ export default function Home() {
           />
 
           {croppedImage && (
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4 mt-4 px-2 md:px-4">
               <h2 className="text-xl font-semibold">Preview</h2>
               <img
                 src={croppedImage}
@@ -127,7 +128,7 @@ export default function Home() {
               />
               <button
                 onClick={handleDownload}
-                className="rounded-full bg-foreground text-background px-6 py-2 hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors"
+                className="rounded-full bg-foreground text-background px-6 py-2 hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors mb-8"
               >
                 Download
               </button>

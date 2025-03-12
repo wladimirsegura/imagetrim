@@ -5,7 +5,6 @@ import ImageCropper from '@/components/ImageCropper';
 
 export default function Home() {
   const [aspectRatio, setAspectRatio] = useState<number | undefined>(undefined);
-  const [croppedImage, setCroppedImage] = useState<string>('');
   const [customWidth, setCustomWidth] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('customWidth') || '';
@@ -104,7 +103,6 @@ export default function Home() {
           
           <ImageCropper
             aspectRatio={aspectRatio}
-            onCropComplete={setCroppedImage}
           />
         </div>
       </main>

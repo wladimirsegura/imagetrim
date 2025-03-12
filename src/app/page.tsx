@@ -27,7 +27,7 @@ export default function Home() {
         setAspectRatio(width / height);
       }
     }
-  }, []);
+  }, [customWidth, customHeight]);
 
   const handleCustomRatioChange = (type: 'width' | 'height', value: string) => {
     if (type === 'width') {
@@ -46,17 +46,6 @@ export default function Home() {
       if (width > 0 && height > 0) {
         setAspectRatio(width / height);
       }
-    }
-  };
-
-  const handleDownload = () => {
-    if (croppedImage) {
-      const link = document.createElement('a');
-      link.href = croppedImage;
-      link.download = 'cropped-image.jpg';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
   };
 
@@ -117,23 +106,6 @@ export default function Home() {
             aspectRatio={aspectRatio}
             onCropComplete={setCroppedImage}
           />
-
-          {croppedImage && (
-            <div className="flex flex-col items-center gap-4 mt-4 px-2 md:px-4">
-              <h2 className="text-xl font-semibold">Preview</h2>
-              <img
-                src={croppedImage}
-                alt="Cropped preview"
-                className="max-w-full h-auto rounded-lg shadow-lg"
-              />
-              <button
-                onClick={handleDownload}
-                className="rounded-full bg-foreground text-background px-6 py-2 hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors mb-8"
-              >
-                Download
-              </button>
-            </div>
-          )}
         </div>
       </main>
     </div>

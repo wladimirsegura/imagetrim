@@ -27,7 +27,7 @@ export default function Home() {
         setAspectRatio(width / height);
       }
     }
-  }, [customWidth, customHeight]);
+  }, [customWidth, customHeight, setAspectRatio]);
 
   const handleCustomRatioChange = (type: 'width' | 'height', value: string) => {
     if (type === 'width') {

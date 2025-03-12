@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import ReactCrop, { Crop, PixelCrop } from 'react-image-crop';
@@ -135,7 +135,7 @@ export default function ImageCropper({ aspectRatio, onCropComplete }: ImageCropp
     }
   };
 
-  const handleClosePreview = () => {
+  const handleClosePreview = useCallback(() => {
     setShowPreview(false);
     setPreviewImage('');
     setCompletedCrop(undefined);
@@ -144,7 +144,18 @@ export default function ImageCropper({ aspectRatio, onCropComplete }: ImageCropp
     setImageQuality(0.92);
     setZoom(1);
     setImagePosition({ x: 0, y: 0 });
-  };
+  }, [setShowPreview, setPreviewImage, setCompletedCrop, setCrop, setImageFormat, setImageQuality, setZoom, setImagePosition]);
+
+  useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showPreview) {
+        handleClosePreview();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscapeKey);
+    return () => window.removeEventListener('keydown', handleEscapeKey);
+  }, [showPreview, handleClosePreview]);
 
   const handleDownload = () => {
     if (previewImage) {
@@ -156,17 +167,6 @@ export default function ImageCropper({ aspectRatio, onCropComplete }: ImageCropp
       document.body.removeChild(link);
     }
   };
-
-  useEffect(() => {
-    const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showPreview) {
-        handleClosePreview();
-      }
-    };
-
-    window.addEventListener('keydown', handleEscapeKey);
-    return () => window.removeEventListener('keydown', handleEscapeKey);
-  }, [showPreview]);
 
   return (
     <div className="w-full max-w-[95vw] mx-auto px-4">
